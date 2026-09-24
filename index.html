@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🍂 가을방학 서버 위키</title>
+<meta name="description" content="가을방학 서버 공식 위키">
+<style>
+:root{
+  --bg:#f7f4ee;--card:#fffdf9;--text:#2d332f;--muted:#70776f;
+  --line:#e6e0d5;--accent:#d9783f;--accent2:#789b78;--dark:#303a35;
+  --shadow:0 10px 30px rgba(56,48,35,.07);--danger:#c95b5b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Pretendard","Noto Sans KR",system-ui,-apple-system,sans-serif;line-height:1.7}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+.topbar{height:64px;background:rgba(255,253,249,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.topbar-inner{max-width:1180px;height:100%;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:18px;font-weight:900;letter-spacing:-.5px}
+.logo span{color:var(--accent)}
+.top-actions{display:flex;gap:8px}
+.icon-btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 10px;cursor:pointer}
+.layout{max-width:1180px;margin:auto;padding:22px 20px 60px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px}
+.sidebar{position:sticky;top:86px;height:max-content}
+.side-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+.side-title{font-size:11px;font-weight:900;color:var(--muted);padding:8px 10px}
+.nav-btn{display:block;width:100%;border:0;background:transparent;text-align:left;padding:10px 12px;border-radius:10px;color:var(--text);cursor:pointer;font-weight:650}
+.nav-btn:hover,.nav-btn.active{background:#f3eadc;color:#8b542e}
+.progress{margin:12px 10px 5px;height:6px;background:#eee8dd;border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:.25s}
+.main{min-width:0}
+.hero{position:relative;overflow:hidden;border:1px solid #e8dcc9;border-radius:24px;padding:34px;background:
+radial-gradient(circle at 90% 15%,#f4bd7d 0 5%,transparent 6%),
+linear-gradient(135deg,#fff0d2,#edf4e9 75%);box-shadow:var(--shadow)}
+.hero:before{content:"🍁 🍂 🍃";position:absolute;right:24px;top:18px;font-size:34px;opacity:.55}
+.kicker{font-size:12px;font-weight:900;letter-spacing:2px;color:#a05d35}
+.hero h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:8px 0 12px;letter-spacing:-2px}
+.hero p{max-width:720px;color:#586359;margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.badge{background:#fffaf0;border:1px solid #e5d5b9;border-radius:99px;padding:6px 11px;font-size:12px;font-weight:800}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.stat{background:rgba(255,255,255,.68);border:1px solid rgba(224,213,192,.9);border-radius:14px;padding:13px}
+.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{display:block;font-size:18px;margin-top:2px}
+.section{display:none;padding-top:25px}.section.active{display:block}
+.section-head{margin-bottom:16px}.section-head h2{font-size:27px;letter-spacing:-1px;margin:0}.section-head p{margin:4px 0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.card h3{font-size:17px;margin:0 0 9px;letter-spacing:-.4px}.card p{margin:0;color:#5d655e}
+.notice{border-left:4px solid var(--accent);background:#fff6e7;border-radius:0 12px 12px 0;padding:13px 15px;margin:13px 0}
+.notice.green{border-color:var(--accent2);background:#eef6ee}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.flow-item{padding:16px 10px;text-align:center;background:#f7f4ed;border:1px solid var(--line);border-radius:13px}
+.flow-item .emoji{font-size:29px}.flow-item strong{display:block;margin-top:4px}
+.npc{display:flex;gap:12px;align-items:center}.npc .emoji{font-size:29px}.npc small{display:block;color:var(--muted)}
+.rule{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.rule:last-child{border-bottom:0}
+.rule-num{min-width:25px;color:var(--accent);font-weight:900}
+.api{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid var(--line)}.api:last-child{border-bottom:0}
+.api code{background:#f0ede7;border-radius:6px;padding:2px 6px;font-size:12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.tag{background:#f1eee7;padding:4px 8px;border-radius:99px;font-size:11px;font-weight:750;color:#63685f}
+.search{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:var(--card);outline:none;margin-bottom:12px}.search:focus{border-color:#c99a71}
+.item-card.hide{display:none}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:610px;font-size:13px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:center}th{background:#f3efe7;font-weight:900}td:first-child,th:first-child{text-align:left}tr:last-child td{border-bottom:0}
+.callout{padding:16px;border-radius:14px;background:#f1f6ef;border:1px solid #d9e6d5}
+.footer{text-align:center;color:var(--muted);padding:35px 0 0;font-size:12px}
+.backtop{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:var(--card);box-shadow:var(--shadow);cursor:pointer}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.sidebar{position:sticky;top:64px;z-index:30}.side-card{overflow:auto}.nav-list{display:flex;gap:4px;overflow-x:auto}.nav-btn{white-space:nowrap;width:auto}.side-title,.progress{display:none}.grid3{grid-template-columns:1fr 1fr}.hero-stats{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:560px){.layout{padding:12px}.hero{padding:24px 20px}.hero-stats{grid-template-columns:1fr}.grid,.grid3,.flow{grid-template-columns:1fr}.hero:before{font-size:25px}.section-head h2{font-size:24px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="logo" href="#home">🍂 <span>가을방학</span> 서버 위키</a>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeBtn" title="테마 변경">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-card">
+      <div class="side-title">WIKI MENU</div>
+      <div class="nav-list">
+        <button class="nav-btn active" data-target="home">🏠 서버 소개</button>
+        <button class="nav-btn" data-target="npcs">🏘️ NPC · 마을</button>
+        <button class="nav-btn" data-target="systems">🌾 시스템</button>
+        <button class="nav-btn" data-target="rules">📜 규칙</button>
+        <button class="nav-btn" data-target="apis">⚡ API</button>
+        <button class="nav-btn" data-target="chests">🎁 상자 보상</button>
+        <button class="nav-btn" data-target="items">🧰 아이템</button>
+        <button class="nav-btn" data-target="enhance">⚒️ 강화 확률</button>
+      </div>
+      <div class="side-title" style="margin-top:8px">읽은 페이지</div>
+      <div class="progress"><i id="progress"></i></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section id="home" class="section active">
+      <div class="hero">
+        <div class="kicker">AUTUMN VACATION · SERVER WIKI</div>
+        <h1>🍂 가을방학 서버</h1>
+        <p><strong>바람이 선선하게 부는 가을 밤, 자고 일어났더니 1970년대?</strong><br>
+        미래로 돌아가기 위해선 잃어버린 기억 조각을 모두 찾아야 합니다!</p>
+        <div class="badges">
+          <span class="badge">📅 9월 26일 ~ 10월 6일</span>
+          <span class="badge">🧩 기억 조각 수집</span>
+          <span class="badge">🎓 졸업 프로젝트</span>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><small>생활 콘텐츠</small><strong>🌱 🎣 ⛏️ ⚔️ 4종</strong></div>
+          <div class="stat"><small>시작 조각</small><strong>종류별 100개</strong></div>
+          <div class="stat"><small>최종 목표</small><strong>🎓 졸업 성공!</strong></div>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-top:25px"><h2>🧩 기억 조각을 찾아라</h2><p>생활 활동을 하면 일정 확률로 해당 기억 조각이 드롭됩니다.</p></div>
+      <div class="flow">
+        <div class="flow-item"><div class="emoji">🌱</div><strong>농사조각</strong><small>작물 수확</small></div>
+        <div class="flow-item"><div class="emoji">🎣</div><strong>낚시조각</strong><small>물고기 낚기</small></div>
+        <div class="flow-item"><div class="emoji">⛏️</div><strong>채광조각</strong><small>광물 채굴</small></div>
+        <div class="flow-item"><div class="emoji">⚔️</div><strong>사냥조각</strong><small>적대적 몬스터</small></div>
+      </div>
+      <div class="notice">⚠️ 사냥 난이도는 <strong>어려움</strong>으로 설정되어 있습니다. 동물은 사냥조각 대상이 아닙니다.</div>
+    </section>
+
+    <section id="npcs" class="section">
+      <div class="section-head"><h2>🏘️ NPC · 마을</h2><p>마을의 건물마다 각자의 역할을 가진 NPC가 있습니다.</p></div>
+      <div class="grid3">
+        <div class="card npc"><span class="emoji">🥩</span><div><strong>정육점</strong><small>사냥 NPC</small></div></div>
+        <div class="card npc"><span class="emoji">🎣</span><div><strong>다잡아낚시</strong><small>낚시 NPC</small></div></div>
+        <div class="card npc"><span class="emoji">🌷</span><div><strong>꽃분이네</strong><small>농사 NPC</small></div></div>
+        <div class="card npc"><span class="emoji">🔨</span><div><strong>철물점</strong><small>채광 NPC</small></div></div>
+        <div class="card npc"><span class="emoji">📚</span><div><strong>대성상회</strong><small>인챈트 NPC</small></div></div>
+        <div class="card npc"><span class="emoji">🏪</span><div><strong>달림상회</strong><small>API · 잡동사니 NPC</small></div></div>
+        <div class="card npc"><span class="emoji">🏫</span><div><strong>학교</strong><small>무기 · 가구 · 스킨 NPC</small></div></div>
+        <div class="card npc"><span class="emoji">🔄</span><div><strong>교환상점</strong><small>기억 조각 교환</small></div></div>
+      </div>
+      <div class="card" style="margin-top:13px">
+        <h3>🔄 교환상점</h3>
+        <div class="callout"><strong>같은 조각 10개 ➜ 원하는 조각 1개</strong><br><span>아무 조각이나 동일한 종류 10개를 모으면 원하는 기억 조각 1개로 교환할 수 있습니다.</span></div>
+      </div>
+      <div class="card" style="margin-top:13px">
+        <h3>🎁 비밀 NPC</h3>
+        <p>로비에 숨어있는 NPC를 찾아보세요. <strong>찾은 사람에게 특별한 선물!</strong></p>
+      </div>
+    </section>
+
+    <section id="systems" class="section">
+      <div class="section-head"><h2>🌾 시스템</h2><p>가을방학 서버에서 즐길 수 있는 주요 콘텐츠입니다.</p></div>
+      <div class="grid">
+        <div class="card"><h3>🌱 커스텀 농사</h3><p>기존 마인크래프트에 존재하지 않는 농작물을 수확할 수 있습니다.</p></div>
+        <div class="card"><h3>🎣 커스텀 낚시</h3><p>기존 마인크래프트에 존재하지 않는 물고기를 낚을 수 있습니다. 낚시 미니게임도 존재합니다.</p></div>
+        <div class="card"><h3>⚔️ 사냥</h3><p>적대적 몬스터를 사냥해 사냥조각을 획득합니다. 동물은 제외됩니다.</p></div>
+        <div class="card"><h3>⛏️ 채광</h3><p>광물을 캐면 일정 확률로 채광조각이 드롭됩니다.</p></div>
+        <div class="card"><h3>📖 아이템 도감</h3><p>아이템 도감을 완성하고 단계별 보상을 획득할 수 있습니다.</p></div>
+        <div class="card"><h3>🍀 행운 시스템</h3><p>행운 단계는 1~10단계이며, 단계가 높을수록 조각 드롭률이 올라갑니다. 섭주 API 333/334를 통해 변경됩니다.</p></div>
+        <div class="card"><h3>🔒 감옥</h3><p>단순한 석탄감옥이 아닌, 감옥 내에서도 여러 콘텐츠를 즐길 수 있습니다.</p></div>
+        <div class="card"><h3>✨ 치장</h3><p>치장 아이템으로 자신을 꾸밀 수 있으며 도구에 스킨을 입히는 것도 가능합니다.</p></div>
+      </div>
+    </section>
+
+    <section id="rules" class="section">
+      <div class="section-head"><h2>📜 서버 규칙</h2><p>규칙을 어길 시 빅룰렛이 돌아갑니다.</p></div>
+      <div class="card">
+        <h3>⚠️ 서버 규칙</h3>
+        <div class="rule"><span class="rule-num">01</span><div>인챈트테이블 공유 금지</div></div>
+        <div class="rule"><span class="rule-num">02</span><div>자동화시스템 공장 금지</div></div>
+        <div class="rule"><span class="rule-num">03</span><div>주민거래 금지</div></div>
+        <div class="rule"><span class="rule-num">04</span><div>수직굴 금지</div></div>
+        <div class="rule"><span class="rule-num">05</span><div>비방 금지</div></div>
+        <div class="rule"><span class="rule-num">06</span><div>겉날개 사용 가능</div></div>
+        <div class="rule"><span class="rule-num">07</span><div>무기·의상 스킨을 기존 가지고 있던 것에 입히려면 무조건 네더 무기·네더 의상을 만들어야 합니다.</div></div>
+      </div>
+      <div class="card" style="margin-top:13px"><h3>🏠 로비 규칙</h3>
+        <div class="rule"><span class="rule-num">01</span><div>로비에 있는 상자는 다 털어도 됩니다.</div></div>
+        <div class="rule"><span class="rule-num">02</span><div>건물 파괴 금지</div></div>
+      </div>
+      <div class="card" style="margin-top:13px"><h3>🏘️ 마을 규칙</h3>
+        <div class="rule"><span class="rule-num">01</span><div>집의 외관을 훼손하면 안 됩니다.</div></div>
+        <div class="rule"><span class="rule-num">02</span><div>자리가 부족하면 지하 땅굴을 파주세요.</div></div>
+        <div class="rule"><span class="rule-num">03</span><div>친구와 같이 살기 가능합니다.</div></div>
+        <div class="rule"><span class="rule-num">04</span><div>집을 사고 난 후 돈을 더 벌어서 넓은 집으로 이사할 수 있습니다.</div></div>
+        <div class="rule"><span class="rule-num">05</span><div>농사는 무조건 농사마을에서 해주세요.</div></div>
+        <div class="rule"><span class="rule-num">06</span><div>무한용암은 집 하나당 5개입니다.</div></div>
+      </div>
+      <div class="card" style="margin-top:13px"><h3>🌱 농사 규칙</h3>
+        <div class="notice">농사마을에서는 남의 땅 서리가 가능합니다.<br>서리한 즉시 <strong>서리범</strong>으로 변신하며 <strong>3분 동안 텔포가 불가능</strong>합니다. 죽으면 바로 감옥에 가게 됩니다.</div>
+        <div class="rule"><span class="rule-num">01</span><div>농사마을에서는 남의 땅 서리가 가능합니다.</div></div>
+        <div class="rule"><span class="rule-num">02</span><div>농사마을에는 그 어떤 물건도 바닥에 설치할 수 없습니다.</div></div>
+        <div class="notice">🚨 적발 시 빅룰렛 1회! 농사마을에서는 <strong>무조건 집을 구매</strong>해야 합니다.</div>
+      </div>
+    </section>
+
+    <section id="apis" class="section">
+      <div class="section-head"><h2>⚡ API</h2><p>유저 API와 섭주 API를 통해 다양한 이벤트가 발생합니다.</p></div>
+      <div class="card"><h3>👤 유저 API</h3>
+        <div class="api"><code>33</code><span>뚜빵 랜덤 <strong>3~10개</strong></span></div>
+        <div class="api"><code>50 / 500</code><span>1회 / 11회 랜덤 증가 — 랜덤으로 한 종류가 <strong>10~100개 증가</strong></span></div>
+        <div class="api"><code>51 / 510</code><span>1회 / 11회 랜덤 감소 — 랜덤으로 한 종류가 <strong>10~100개 감소</strong></span></div>
+        <div class="api"><code>112</code><span><strong>감옥에 감금</strong> — 다양한 방법으로 탈출 시간을 단축할 수 있습니다.</span></div>
+        <div class="api"><code>감옥 전용 API 30개</code><span>랜덤 몹 스폰</span></div>
+        <div class="api"><code>사망</code><span>감옥 1분 추가</span></div>
+        <div class="api"><code>PVP</code><span>감옥 안에서 서로 PVP 가능</span></div>
+        <div class="api"><code>스트리머 처치</code><span>죽은 사람 +1분 / 죽인 사람 -30초</span></div>
+        <div class="api"><code>100 / 1000</code><span>1회 / 11회 일반상자 지급</span></div>
+        <div class="api"><code>300 / 3000</code><span>1회 / 11회 고급상자 지급</span></div>
+        <div class="api"><code>444</code><span><strong>괴롭히기:</strong> 일반상자 / 감옥 5분 / 조각 룰렛 1회 중 1개</span></div>
+        <div class="api"><code>4444</code><span style="color:var(--danger);font-weight:900">즉사 + 인벤토리 아이템 삭제</span></div>
+      </div>
+      <div class="card" style="margin-top:13px"><h3>👑 섭주 API</h3>
+        <div class="api"><code>300</code><span>전체 일반상자</span></div>
+        <div class="api"><code>333</code><span>행운버프 감소</span></div>
+        <div class="api"><code>334</code><span>행운버프 증가</span></div>
+        <div class="api"><code>444</code><span>랜덤 괴롭히기</span></div>
+        <div class="callout" style="margin:10px 0"><strong>444 랜덤 괴롭히기</strong><ol style="margin:5px 0 0 20px"><li>받아쓰기 — 실패 50개 증가 / 성공 51개</li><li>퀴즈 맞추기 — 실패 50개 증가 / 성공 51개</li><li>랜덤 몹 5마리 스폰</li><li>감옥 or 상자 룰렛</li></ol></div>
+        <div class="api"><code>500</code><span>전체 고급상자</span></div>
+        <div class="api"><code>1000</code><span>피버 1분</span></div>
+        <div class="api"><code>2222</code><span>유저 단체감옥 + 고급상자 지급</span></div>
+      </div>
+    </section>
+
+    <section id="chests" class="section">
+      <div class="section-head"><h2>🎁 상자 보상</h2><p>일반상자와 고급상자에서 다양한 아이템을 획득할 수 있습니다.</p></div>
+      <div class="grid">
+        <div class="card"><h3>📦 일반상자</h3><div class="tags">
+          <span class="tag">뚜빵 16개</span><span class="tag">도구뽑기권</span><span class="tag">의상뽑기권</span><span class="tag">치장뽑기권</span><span class="tag">가구뽑기권</span><span class="tag">인벤세이브권</span><span class="tag">리턴권</span><span class="tag">귀환권</span><span class="tag">인챈트코인</span><span class="tag">하락방지권</span><span class="tag">파괴방지권</span><span class="tag">랜덤유저텔포권</span><span class="tag">감옥권</span><span class="tag">감옥반사권</span><span class="tag">가상창고 이용권</span><span class="tag">광물상자</span><span class="tag">청크보호권 30분</span><span class="tag">초대권</span>
+        </div></div>
+        <div class="card"><h3>👑 고급상자</h3><div class="tags">
+          <span class="tag">뚜빵 32개</span><span class="tag">무기뽑기권 3개</span><span class="tag">의상뽑기권 3개</span><span class="tag">치장뽑기권 3개</span><span class="tag">경험치상자 1~3개</span><span class="tag">광물상자 3개</span><span class="tag">인벤세이브권 3개</span><span class="tag">리턴권 3개</span><span class="tag">귀환권 3개</span><span class="tag">인챈트코인 3개</span><span class="tag">하락방지권 3개</span><span class="tag">파괴방지권 1~2개</span><span class="tag">랜덤유저텔포권 3개</span><span class="tag">감옥권 3개</span><span class="tag">감옥반사권 3개</span><span class="tag">초대권</span><span class="tag">가상창고 이용권</span><span class="tag">도감완료쿠폰</span><span class="tag">청크보호권 1시간</span><span class="tag">랜덤인챈트북</span>
+        </div></div>
+      </div>
+    </section>
+
+    <section id="items" class="section">
+      <div class="section-head"><h2>🧰 아이템 설명</h2><p>검색창에서 원하는 아이템을 빠르게 찾아보세요.</p></div>
+      <input id="itemSearch" class="search" placeholder="🔎 아이템 검색..." aria-label="아이템 검색">
+      <div class="grid" id="itemGrid">
+        <div class="card item-card" data-search="인벤세이브 인벤세이브권"><h3>🛡️ 인벤세이브</h3><p>인벤토리에 소지하고 있으면 죽어도 템과 경험치가 사라지지 않습니다.</p><div class="tags"><span class="tag">셜커에 넣으면 안 됨</span></div></div>
+        <div class="card item-card" data-search="귀환권"><h3>🏠 귀환권</h3><p>좌클릭 시 로비로 돌아올 수 있습니다.</p></div>
+        <div class="card item-card" data-search="리턴권"><h3>↩️ 리턴권</h3><p>죽은 후 리턴권을 좌클릭하면 죽었던 장소로 돌아갑니다.</p><div class="tags"><span class="tag">1회성</span></div></div>
+        <div class="card item-card" data-search="랜덤유저텔포권"><h3>🌀 랜덤유저텔포권</h3><p>좌클릭 시 랜덤 유저에게 텔포를 탈 수 있습니다.</p></div>
+        <div class="card item-card" data-search="광물상자"><h3>⛏️ 광물상자</h3><p>사용 시 랜덤 광물이 지급됩니다.</p></div>
+        <div class="card item-card" data-search="경험치상자"><h3>✨ 경험치상자</h3><p>사용 시 랜덤 경험치가 지급됩니다.</p></div>
+        <div class="card item-card" data-search="인챈트코인"><h3>🪙 인챈트코인</h3><p>도구를 강화할 수 있습니다.</p></div>
+        <div class="card item-card" data-search="하락방지권"><h3>⬆️ 하락방지권</h3><p>도구 강화 시 하락을 방지합니다.</p></div>
+        <div class="card item-card" data-search="파괴방지권"><h3>🛠️ 파괴방지권</h3><p>도구 강화 시 파괴를 방지합니다.</p></div>
+        <div class="card item-card" data-search="감옥권"><h3>🔒 감옥권</h3><p>상대를 감옥에 보낼 수 있습니다.</p></div>
+        <div class="card item-card" data-search="감옥반사권"><h3>🔁 감옥반사권</h3><p>감옥권을 반사합니다.</p></div>
+        <div class="card item-card" data-search="가상창고 이용권"><h3>📦 가상창고 이용권</h3><p>가상창고를 오픈할 수 있습니다.</p></div>
+        <div class="card item-card" data-search="초대권"><h3>📨 초대권</h3><p>원하는 스트리머를 초대할 수 있습니다. 운영자를 불러서 사용합니다.</p></div>
+        <div class="card item-card" data-search="도감완료쿠폰"><h3>📖 도감완료쿠폰</h3><p>도감을 1칸 채울 수 있습니다.</p></div>
+        <div class="card item-card" data-search="농장보호권 청크보호권 30분 1시간"><h3>🛡️ 농장보호권</h3><p>농장이 서리당하는 것을 막을 수 있습니다.</p><div class="tags"><span class="tag">30분 / 1시간</span></div></div>
+        <div class="card item-card" data-search="랜덤인챈트북"><h3>📘 랜덤인챈트북</h3><p>랜덤 인챈트 책을 얻을 수 있습니다. 너무 안 좋은 것은 나오지 않습니다.</p></div>
+      </div>
+      <p id="noResult" style="display:none;text-align:center;color:var(--muted)">검색 결과가 없습니다.</p>
+    </section>
+
+    <section id="enhance" class="section">
+      <div class="section-head"><h2>⚒️ 강화 확률</h2><p>인챈트코인을 사용해 도구를 강화할 수 있습니다.</p></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>강화</th><th>성공 확률</th><th>실패 확률</th><th>하락 확률</th><th>파괴 확률</th></tr></thead>
+        <tbody>
+          <tr><td>0 → 1</td><td>100%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+          <tr><td>1 → 2</td><td>100%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+          <tr><td>2 → 3</td><td>98%</td><td>1%</td><td>1%</td><td>0%</td></tr>
+          <tr><td>3 → 4</td><td>96%</td><td>3%</td><td>1%</td><td>0%</td></tr>
+          <tr><td>4 → 5</td><td>94%</td><td>5%</td><td>1%</td><td>0%</td></tr>
+          <tr><td>5 → 6</td><td>92%</td><td>6%</td><td>2%</td><td>0%</td></tr>
+          <tr><td>6 → 7</td><td>90%</td><td>8%</td><td>2%</td><td>0%</td></tr>
+          <tr><td>7 → 8</td><td>87%</td><td>10%</td><td>3%</td><td>0%</td></tr>
+          <tr><td>8 → 9</td><td>84%</td><td>13%</td><td>3%</td><td>0%</td></tr>
+          <tr><td>9 → 10</td><td>80%</td><td>16%</td><td>4%</td><td>0%</td></tr>
+          <tr><td>10 → 11</td><td>76%</td><td>20%</td><td>4%</td><td>0%</td></tr>
+          <tr><td>11 → 12</td><td>74%</td><td>21%</td><td>5%</td><td>0%</td></tr>
+          <tr><td>12 → 13</td><td>72%</td><td>23%</td><td>5%</td><td>0%</td></tr>
+          <tr><td>13 → 14</td><td>70%</td><td>23%</td><td>6%</td><td>1%</td></tr>
+          <tr><td>14 → 15</td><td>67%</td><td>26%</td><td>6%</td><td>1%</td></tr>
+          <tr><td>15 → 16</td><td>64%</td><td>28%</td><td>7%</td><td>1%</td></tr>
+          <tr><td>16 → 17</td><td>62%</td><td>29%</td><td>7%</td><td>2%</td></tr>
+          <tr><td>17 → 18</td><td>60%</td><td>30%</td><td>8%</td><td>2%</td></tr>
+          <tr><td>18 → 19</td><td>68%</td><td>22%</td><td>8%</td><td>2%</td></tr>
+          <tr><td>19 → 20</td><td>56%</td><td>32%</td><td>9%</td><td>3%</td></tr>
+          <tr><td>20 → 21</td><td>54%</td><td>34%</td><td>9%</td><td>3%</td></tr>
+          <tr><td>21 → 22</td><td>52%</td><td>35%</td><td>10%</td><td>3%</td></tr>
+          <tr><td>22 → 23</td><td>50%</td><td>35%</td><td>11%</td><td>4%</td></tr>
+          <tr><td>23 → 24</td><td>50%</td><td>34%</td><td>12%</td><td>4%</td></tr>
+          <tr><td>24 → 25</td><td>49%</td><td>34%</td><td>13%</td><td>4%</td></tr>
+          <tr><td>25 → 26</td><td>48%</td><td>33%</td><td>14%</td><td>5%</td></tr>
+          <tr><td>26 → 27</td><td>47%</td><td>33%</td><td>15%</td><td>5%</td></tr>
+          <tr><td>27 → 28</td><td>46%</td><td>33%</td><td>16%</td><td>5%</td></tr>
+          <tr><td>28강 이상</td><td>45%</td><td>33%</td><td>16%</td><td>6%</td></tr>
+          <tr><td>36강 이상</td><td>40%</td><td>30%</td><td>20%</td><td>10%</td></tr>
+        </tbody></table>
+      </div>
+      <div class="notice" style="margin-top:13px">📌 하락방지권, 파괴방지권은 인벤토리에 있어야 적용됩니다.</div>
+    </section>
+
+    <div class="footer">🍁 가을방학 서버 · 잃어버린 기억 조각을 찾아 졸업하세요!</div>
+  </main>
+</div>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
+
+<script>
+const buttons=[...document.querySelectorAll('.nav-btn')];
+const sections=[...document.querySelectorAll('.section')];
+function showPage(id,updateHash=true){
+  sections.forEach(s=>s.classList.toggle('active',s.id===id));
+  buttons.forEach(b=>b.classList.toggle('active',b.dataset.target===id));
+  if(updateHash) history.replaceState(null,'','#'+id);
+  window.scrollTo({top:0,behavior:'smooth'});
+  const index=buttons.findIndex(b=>b.dataset.target===id);
+  document.getElementById('progress').style.width=Math.max(12,(index+1)/buttons.length*100)+'%';
+}
+buttons.forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.target)));
+window.addEventListener('load',()=>showPage(location.hash.slice(1)||'home',false));
+
+document.getElementById('itemSearch').addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();
+  let visible=0;
+  document.querySelectorAll('.item-card').forEach(card=>{
+    const ok=card.dataset.search.toLowerCase().includes(q);
+    card.classList.toggle('hide',!ok); if(ok)visible++;
+  });
+  document.getElementById('noResult').style.display=visible?'none':'block';
+});
+
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const dark=document.body.dataset.dark==='1';
+  document.body.dataset.dark=dark?'0':'1';
+  document.documentElement.style.setProperty('--bg',dark?'#f7f4ee':'#171a18');
+  document.documentElement.style.setProperty('--card',dark?'#fffdf9':'#222622');
+  document.documentElement.style.setProperty('--text',dark?'#2d332f':'#eef1ec');
+  document.documentElement.style.setProperty('--muted',dark?'#70776f':'#aab2aa');
+  document.documentElement.style.setProperty('--line',dark?'#e6e0d5':'#343a35');
+  document.getElementById('themeBtn').textContent=dark?'🌙':'☀️';
+});
+</script>
+</body>
+</html>
